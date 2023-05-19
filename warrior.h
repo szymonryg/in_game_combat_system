@@ -8,8 +8,8 @@
 #include "character.h"
 
 class warrior : public character{
-
-
+public:
+    explicit warrior();
 };
 
 
