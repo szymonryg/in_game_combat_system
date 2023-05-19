@@ -4,10 +4,11 @@
 
 #ifndef IN_GAME_COMBAT_SYSTEM_CHARACTER_H
 #define IN_GAME_COMBAT_SYSTEM_CHARACTER_H
-#include "warrior.h"
+
 
 class character {
 public:
+    explicit character();
     void take_damage(int dmg);
     void basic_attack();
     void special_attack();

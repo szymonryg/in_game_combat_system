@@ -4,6 +4,10 @@
 
 #include "character.h"
 
+character::character() {
+
+}
+
 void character::take_damage(int dmg) {
 
 }

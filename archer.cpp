@@ -8,6 +8,6 @@ archer::archer() : character() {
 
 }
 
-void archer::get_arrows() {
-
+int archer::get_arrows() {
+    return 0;
 }

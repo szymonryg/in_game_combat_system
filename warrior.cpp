@@ -4,6 +4,4 @@
 
 #include "warrior.h"
 
-warrior::warrior() : character() {
 
-}
