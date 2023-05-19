@@ -10,6 +10,7 @@
 class sorcerer : public character{
 public:
     explicit sorcerer();
+    void heal();
 };
 
 

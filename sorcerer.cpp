@@ -7,3 +7,7 @@
 sorcerer::sorcerer() : character() {
 
 }
+
+void sorcerer::heal() {
+
+}

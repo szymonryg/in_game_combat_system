@@ -7,3 +7,7 @@
 archer::archer() : character() {
 
 }
+
+void archer::get_arrows() {
+
+}

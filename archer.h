@@ -10,6 +10,9 @@
 class archer : public character{
 public:
     explicit archer();
+    int get_arrows();
+private:
+    int arrows;
 };
 
 
