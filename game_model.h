@@ -11,13 +11,14 @@
 class game_model {
 
 public:
-    explicit game_model(game_board& board);
+    explicit game_model(game_board &board);
     void choose_character(int n);
     character get_player();
     character get_enemy();
     bool end_game();
-private:
     game_board& board;
+private:
+
     character enemy;
     character player_character;
 };

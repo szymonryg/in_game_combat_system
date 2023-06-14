@@ -6,5 +6,5 @@
 
 
 warrior::warrior() : character() {
-
+    this->take_damage(20);
 }

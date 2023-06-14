@@ -7,12 +7,17 @@
 
 #include "game_model.h"
 #include "game_view.h"
+#include <iostream>
+#include <conio.h>
 
 class game_controller {
 public:
     explicit game_controller(game_model& model, game_view& view);
+    void menu();
     void launch();
     void player_turn();
+    void cursor();
+    void move();
     void enemy_turn();
 private:
     game_model& model;
