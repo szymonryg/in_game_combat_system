@@ -1,5 +1,7 @@
-Nazwa projektu:
+Nazwa projektu: In game combat system
+
 Autor: Szymon Rygiel
+
 Licencja: Open Source
 
 Projekt polegał na napisaniu programu symulującego walkę w grze. Użytkownik ma
