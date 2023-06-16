@@ -9,17 +9,20 @@
 #include "game_view.h"
 #include <iostream>
 #include <conio.h>
+#include <Windows.h>
 
 class game_controller {
 public:
     explicit game_controller(game_model& model, game_view& view);
-    void menu();
+    bool menu();
     void launch();
     void player_turn();
     void cursor();
     void move();
     void enemy_turn();
+    bool play_again();
 private:
+    std::string comm;
     game_model& model;
     game_view& view;
 };
