@@ -1,6 +1,7 @@
-//
-// Created by timo0 on 18.05.2023.
-//
+/*
+ Created by Szymon Rygiel on 18.05.2023.
+ Klasa game_controller odpowiada za kontrolę gry, łączy wszystkie inne klasy w logiczną całość i wykorzystuje je
+*/
 
 
 #include "game_controller.h"
@@ -10,6 +11,7 @@ game_controller::game_controller(game_model& model, game_view& view) : model(mod
 
 }
 
+// Metoda odpowiada za wybór postaci gracza
 bool game_controller::menu() {
     this->view.menu();
     int key;
@@ -26,6 +28,7 @@ bool game_controller::menu() {
     return false;
 }
 
+// Metoda odpowiada za przebieg tury gracza
 void game_controller::player_turn() {
     int key;
     bool move = true;
@@ -59,6 +62,7 @@ void game_controller::player_turn() {
     while(key != 52);
 }
 
+// Metoda odpowiada za prawidłowy ruch kursora (aby nie wychodził poza planszę)
 void game_controller::cursor() {
     this->model.board.board1[this->model.board.get_cursor_position().y][this->model.board.get_cursor_position().x] = '+';
     comm = "Move";
@@ -66,6 +70,7 @@ void game_controller::cursor() {
     int key;
     do{
         key = getch();
+        // Poniższe warunki sprawiają, że kursor nie wyjdzie poza planszę
         if(key == 119 && model.board.get_cursor_position().y != 0)
             this->model.board.move_cursor(0, -1);
         else if(key == 115 && model.board.get_cursor_position().y != 8)
@@ -80,6 +85,11 @@ void game_controller::cursor() {
     comm = "";
 }
 
+/*
+ Metoda move sprawdza czy gracz nie chce ruszyć się na miejsce w którym już się znajduje oraz
+ czy nie chce ruszyć się na miejsce zajęte przez przeciwnika
+ Jeżeli ten ruch jest możliwy to zostaje wykonany
+*/
 void game_controller::move() {
     while(true) {
         this->cursor();
@@ -98,6 +108,7 @@ void game_controller::move() {
 
 }
 
+// Metoda odpowiada za przebieg tury przeciwnika
 void game_controller::enemy_turn() {
     this->view.turn_update("Enemy turn");
     getch();
@@ -109,6 +120,7 @@ void game_controller::enemy_turn() {
     }
 }
 
+// Metoda zwraca prawdę jeżeli gracz wciśnie 1 oraz fałsz jeżeli wciśnie Esc, jest ona wykorzystywana przy pytaniu o chęć ponownego zagrania
 bool game_controller::play_again() {
     int key;
     do {
@@ -120,8 +132,9 @@ bool game_controller::play_again() {
     return false;
 }
 
+// Metoda launch łączy wszystkie powyższe metody w logiczną całość, jako jedyna jest wywoływana w funkcji main
 void game_controller::launch() {
-    bool play = true;
+    bool play;
     bool new_game = false;
     play = this->menu();
     while(play) {
@@ -134,14 +147,14 @@ void game_controller::launch() {
         }
 
         this->player_turn();
-        if(this->model.win()){
+        if(this->model.win()){ // sprawdza czy gracz wygrał, jeżeli tak pyta o chęć ponownej gry
             this->view.win();
             play = this->play_again();
             new_game = play;
         }
 
         this->enemy_turn();
-        if (this->model.lose()) {
+        if (this->model.lose()) { // sprawdza czy gracz przegrał, jeżeli tak pyta o chęć ponownej gry
             this->view.lose();
             play = this->play_again();
             new_game = play;

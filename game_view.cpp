@@ -1,6 +1,7 @@
-//
-// Created by timo0 on 18.05.2023.
-//
+/*
+ Created by Szymon Rygiel on 18.05.2023.
+ Plik odpowiada za wyświetlanie menu, wyświetlanie planszy gry i potrzebnych informacji oraz wyświetlanie ekranu porażki lub wygranej.
+*/
 
 #include <iostream>
 
@@ -10,6 +11,7 @@ game_view::game_view(game_model &model) : model(model) {
 
 }
 
+// Metoda menu odpowiada za wyświetlanie menu gry
 void game_view::menu() {
     system("cls");
     std::cout << "Choose your character:\n";
@@ -19,6 +21,7 @@ void game_view::menu() {
     std::cout << "Esc to exit\n";
 }
 
+// Metoda turn_update odpowiada za wyświetlanie planszy gry i potrzebnych informacji
 void game_view::turn_update(std::string comm) {
     system("cls");
     std::cout << "-------------------------------------             " << this->model.get_player()->get_name() << "\n";
@@ -67,7 +70,7 @@ void game_view::turn_update(std::string comm) {
     std::cout << "\n" << comm;
 }
 
-
+// Metoda win odpowiada za wyświetlanie ekranu wygraniej
 void game_view::win() {
     system("cls");
     std::cout << "You WON!!\n";
@@ -75,6 +78,7 @@ void game_view::win() {
     std::cout << "Press ESC to exit";
 }
 
+// Metoda lose odpowiada za wyświetlanie ekranu porażki
 void game_view::lose() {
     system("cls");
     std::cout << "You LOST!!\n";
