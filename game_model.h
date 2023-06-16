@@ -9,7 +9,6 @@
 #include "character.h"
 
 class game_model {
-
 public:
     explicit game_model(game_board &board);
     void choose_character(int n);

@@ -1,4 +1,4 @@
-Nazwa projektu: In game combat system
+Nazwa projektu: In-game combat system
 
 Autor: Szymon Rygiel
 
