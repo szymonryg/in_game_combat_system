@@ -5,19 +5,13 @@
 #include "game_board.h"
 
 game_board::game_board() {
-    this->player_position.x = 3;
-    this->player_position.y = 3;
-    this->enemy_position.x = 6;
-    this->enemy_position.y = 4;
+    this->reset_cursor();
+    this->reset_board();
+}
+
+void game_board::reset_cursor() {
     this->cursor_position.x = 4;
     this->cursor_position.y = 4;
-    for (int i = 0; i <= 8; i++){
-        for (int j = 0; j <= 8; j++) {
-            this->board1[i][j] = 'a';
-        }
-    }
-    this->board1[player_position.y][player_position.x] = 'P';
-    this->board1[enemy_position.y][enemy_position.x] = 'E';
 }
 
 void game_board::move_cursor(int x, int y) {
@@ -52,15 +46,28 @@ game_board::position game_board::get_enemy_position() {
 }
 
 bool game_board::attack_possible() {
-    return true;
+    if((this->player_position.y == this->enemy_position.y) && ((this->player_position.x - 1 == this->enemy_position.x) || (this->player_position.x + 1 == this->enemy_position.x)))
+        return true;
+    else if((this->player_position.y - 1 == this->enemy_position.y) && ((this->player_position.x - 1 == this->enemy_position.x) || (this->player_position.x == this->enemy_position.x) || (this->player_position.x + 1 == this->enemy_position.x)))
+        return true;
+    else if((this->player_position.y + 1 == this->enemy_position.y) && ((this->player_position.x - 1 == this->enemy_position.x) || (this->player_position.x == this->enemy_position.x) || (this->player_position.x + 1 == this->enemy_position.x)))
+        return true;
+
+    return false;
 }
 
 void game_board::reset_board() {
-    this->player_position.x = 3;
-    this->player_position.y = 3;
-    this->enemy_position.x = 6;
+    this->player_position.x = 0;
+    this->player_position.y = 4;
+    this->enemy_position.x = 7;
     this->enemy_position.y = 4;
-
+    for (int i = 0; i <= 8; i++){
+        for (int j = 0; j <= 8; j++) {
+            this->board1[i][j] = ' ';
+        }
+    }
+    this->board1[player_position.y][player_position.x] = 'P';
+    this->board1[enemy_position.y][enemy_position.x] = 'E';
 }
 
 game_board::position game_board::get_cursor_position() {
@@ -73,6 +80,8 @@ bool game_board::move_possible(position character_position, int movement_points)
 
     return false;
 }
+
+
 
 
 

@@ -17,6 +17,7 @@ public:
 
     explicit game_board();
     void move_cursor(int x, int y);
+    void reset_cursor();
     void move_player(position cursor);
     void move_enemy(int x, int y);
     position get_player_position();
